@@ -74,7 +74,7 @@ $ oc whoami
 IAM<your name>
 ```
 
-Now let's explore the clit a little bit:
+Now let's explore the cli a little bit:
 
 ```bash
 $ oc --help
