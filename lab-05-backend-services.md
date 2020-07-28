@@ -234,7 +234,7 @@ This Dockerfile first packages the JEE application using a `maven` container ima
 
 ## Deploy the backend with YAML resource definitions
 
-Instead of letting OpenShift create the resurces for you with the Web Console, you will create them with YAML resource definitions and the OpenShift CLI yourself.
+Instead of letting OpenShift create the resources for you with the Web Console, you will create them with YAML resource definitions and the OpenShift CLI yourself.
 
 Defining the infrastructure as code is helpful for re-using applications and promoting them accross different environments.
 
