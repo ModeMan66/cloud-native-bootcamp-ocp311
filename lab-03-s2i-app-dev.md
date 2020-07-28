@@ -187,7 +187,7 @@ As with the other resources, the `DeploymentConfig` is also specified in a confi
 
 ### Scale the application
 
-At the moment your application is running with two replicated pod. Change `replicas: 2` to `replicas: 1` and click `Save` at the bottom of the page.
+At the moment your application is running with two replicated pod. Change `replicas: 2` to `replicas: 1` in the `DeploymentConfig` and click `Save` at the bottom of the page.
 
 Open the `Events` tab. Here you can see that the deployment was scaled from `2` to `1` replicas.
 
