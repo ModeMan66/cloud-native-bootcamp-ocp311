@@ -1,4 +1,4 @@
-# Lab 1: Cloud and Cluster access check
+# Lab 0: Cloud and Cluster access check
 
 Before we can start with any labs, the access to the IBM Cloud and the OpenShift cluster have to be validated.
 
