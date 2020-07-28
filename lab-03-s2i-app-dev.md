@@ -1,14 +1,14 @@
 # Lab 3: Application Development using Source-to-Image (S2I)
 
-In this lab you will learn how you can use the *Source-to-Image (S2I)* process to quickly deploy applications. This process consists of two major steps:
+In this lab you will learn how you can use the _Source-to-Image (S2I)_ process to quickly deploy applications. This process consists of two major steps:
 
-* **Build step**: The application is compiled and packaged as a container image and pushed into the OpenShift registry
-* **Deployment step**: Pods in which the container images run are started to make the application available
+- **Build step**: The application is compiled and packaged as a container image and pushed into the OpenShift registry
+- **Deployment step**: Pods in which the container images run are started to make the application available
 
 In addition you will:
 
-* Scale a deployment by increasing and decreasing the number of pods
-* Learn how traffic is directed to pods using services and routes
+- Scale a deployment by increasing and decreasing the number of pods
+- Learn how traffic is directed to pods using services and routes
 
 Before you start please make sure you are should logged into the Web Console of the OpenShift cluster (see Lab 1)
 
@@ -26,7 +26,7 @@ If neccessary, log in with your github.com credentials or sign up for a new acco
 
 ## Deploy your application using the OpenShift Catalog
 
-To deploy your just-forked repository, go to your OpenShift cluster's Web Console and select the project you created in *Lab 1*.
+To deploy your just-forked repository, go to your OpenShift cluster's Web Console and select the project you created in _Lab 1_.
 
 Click on `Add to Project` on the top right, then select `Browse Catalog`:
 
@@ -42,12 +42,11 @@ Click on `Next` and then in the second step click on `advanced options` (a hyper
 
 Fill in the following values:
 
-| Attribute          | Value                                      |
-|--------------------|--------------------------------------------|
-| Name               | `patient-ui`                               |
-| Git Repository URL | *URL of your git repository*               |
-| Context Dir        | `/site`                                    |
-
+| Attribute          | Value                        |
+| ------------------ | ---------------------------- |
+| Name               | `patient-ui`                 |
+| Git Repository URL | _URL of your git repository_ |
+| Context Dir        | `/site`                      |
 
 #### Routing
 
@@ -101,6 +100,10 @@ To start your first build click on the three dots on the right side and select `
 
 Now you can see the build process running, including build logs.
 
+Creating the application throught OpenShift and running the first build has created the following objects and resources, which will be describe in detail in a later section:
+
+![Application objects and resources](lab-03-images/component-overview.png)
+
 When the build is completed, make sure that two pods are running, the container is exposing port 8080 and that the service is mapping traffic from port 8080 to 8080. Then click the URL under `Routes` to open your application.
 
 ![The application has been created](lab-03-images/app-login.png)
@@ -113,7 +116,7 @@ You can log in with any username and password.
 
 In this section you will explore how container images are built and stored in OpenShift.
 
-A *build* is the process of creating a runnable container image from application source code. A *BuildConfig* resource defines the entire build process. An *image stream* provides a stable, short name to reference a container image to ensure stable deployments and rollbacks.
+A _build_ is the process of creating a runnable container image from application source code. A _BuildConfig_ resource defines the entire build process. An _image stream_ provides a stable, short name to reference a container image to ensure stable deployments and rollbacks.
 
 ### Review the Source-to-Image (S2I) build process
 
@@ -126,12 +129,13 @@ Browse back to the `patient-ui` build, then click on `Actions` > `Edit YAML` to 
 ![BuildConfig YAML](lab-03-images/buildconfig-yaml.png)
 
 The `BuildConfig` resource describes how container images are built and when these builds are triggered:
-* Images are built with the `strategy` of `type: Source` with the `nodejs:10` builder image, which is stored in the project `namespace: openshift`
-* A `type: Git` repository stores the application source code
-* The `output` image of the build is written to the `name: patient-ui:latest`
-* Builds are automatically triggered on `ImageChange` of the `nodejs` builder image
 
-OpenShift can create container images from source code without Docker using the *Source-to-Image (S2I)* tool. The S2I tool builds ready-to-run container images from application source code. Therefore it injects an application's source code into a base container image and, thus, produces a new container images that runs the application. For example the node.js container image already contains the node.js runtime, NPM package manager and other libraries required for running node.js applications.
+- Images are built with the `strategy` of `type: Source` with the `nodejs:10` builder image, which is stored in the project `namespace: openshift`
+- A `type: Git` repository stores the application source code
+- The `output` image of the build is written to the `name: patient-ui:latest`
+- Builds are automatically triggered on `ImageChange` of the `nodejs` builder image
+
+OpenShift can create container images from source code without Docker using the _Source-to-Image (S2I)_ tool. The S2I tool builds ready-to-run container images from application source code. Therefore it injects an application's source code into a base container image and, thus, produces a new container images that runs the application. For example the node.js container image already contains the node.js runtime, NPM package manager and other libraries required for running node.js applications.
 
 ### Image streams
 
@@ -139,7 +143,7 @@ Having your application's image built, you will now explore where the `patient-u
 
 ![Image Stream](lab-03-images/image-stream.png)
 
-Here you can see the `ImageStream` resource, which comprises container images identified by *image stream tags*.
+Here you can see the `ImageStream` resource, which comprises container images identified by _image stream tags_.
 
 Again, click on `Actions` > `Edit YAML` to review the resource configuration of the image stream.
 
@@ -155,7 +159,7 @@ In the following chapters and Lab 4 you will see how other components in OpenShi
 
 In this section you will explore how the `patient-ui:latest` image is made available to users and other applications using pods and deployments. You will also learn how to scale deployments by increasing and decreasing the number of pods.
 
-In a *pod* one or more containers are deployed together on one host, and the smallest compute unit in OpenShift. A set of pods is managed by the *DeploymentConfig*. The *DeploymentConfig* embeds a *ReplicationController*, which ensures that the specified number of pod copies (replicas) is running at all times. If pods fail or the specified number increases, new pods are created. If the specified number decreases, pods are terminated.
+In a _pod_ one or more containers are deployed together on one host, and the smallest compute unit in OpenShift. A set of pods is managed by the _DeploymentConfig_. The _DeploymentConfig_ embeds a _ReplicationController_, which ensures that the specified number of pod copies (replicas) is running at all times. If pods fail or the specified number increases, new pods are created. If the specified number decreases, pods are terminated.
 
 ### Review the application deployment
 
@@ -173,13 +177,13 @@ In the next step we will review the deployment configuration. Therefore scroll u
 
 As with the other resources, the `DeploymentConfig` is also specified in a configuration file in which you will find the information you just saw in the Web Console UI:
 
-* There are `2` replicated pods running
-* That new versions of the image should be deployed with a `Rolling` update strategy
-* The pod runs one container named `patient-ui` with the `.../your-project/patient-ui:latest@sha256...` image
-* The container is listening on `port 8080` and limited to `200M of memory`
-* New deployments are triggered on:
-    * `ImageChange`: When a new image is pushed to the `patient-ui:latest` Image Stream the image value of the `patient-ui` container is replaced by a new version
-    * `ConfigChange`: When we edit this YAML file
+- There are `2` replicated pods running
+- That new versions of the image should be deployed with a `Rolling` update strategy
+- The pod runs one container named `patient-ui` with the `.../your-project/patient-ui:latest@sha256...` image
+- The container is listening on `port 8080` and limited to `200M of memory`
+- New deployments are triggered on:
+  - `ImageChange`: When a new image is pushed to the `patient-ui:latest` Image Stream the image value of the `patient-ui` container is replaced by a new version
+  - `ConfigChange`: When we edit this YAML file
 
 ### Scale the application
 
@@ -187,7 +191,7 @@ At the moment your application is running with two replicated pod. Change `repli
 
 Open the `Events` tab. Here you can see that the deployment was scaled from `2` to `1` replicas.
 
-Select the `History` tab and click on `#1`. The *ReplicationController* describing a set of pod replicas will open:
+Select the `History` tab and click on `#1`. The _ReplicationController_ describing a set of pod replicas will open:
 
 ![Replication Controller](lab-03-images/replication-controller.png)
 
@@ -219,9 +223,9 @@ Click on one of the running `patient-ui-...` pods:
 
 Take some time to explore the tabs – they can help you to troubleshoot applications:
 
-* In the `Logs` tab you can see application logs, for example that the application is actually `Listening on port  8080`.
-* In the `Terminal` tab you can run commands inside the container, for example `ls` to see a list of the files S2I injected into the container.
-* In the `Events` tab you can see that the Pod *Successfully pulled the image* and *Started the container*.
+- In the `Logs` tab you can see application logs, for example that the application is actually `Listening on port 8080`.
+- In the `Terminal` tab you can run commands inside the container, for example `ls` to see a list of the files S2I injected into the container.
+- In the `Events` tab you can see that the Pod _Successfully pulled the image_ and _Started the container_.
 
 <hr />
 
@@ -229,7 +233,7 @@ Take some time to explore the tabs – they can help you to troubleshoot applica
 
 While we explored in the previous sections how container images are built and deployed, you will learn how traffic is directed to these pods and containers using services and routes.
 
-A *service* is an abstraction layer which defines a logical set of pods and enables external traffic exposure, load balancing and service discovery. A *route* allows users and applications outside of the OpenShift instance to access the pods over the network.
+A _service_ is an abstraction layer which defines a logical set of pods and enables external traffic exposure, load balancing and service discovery. A _route_ allows users and applications outside of the OpenShift instance to access the pods over the network.
 
 ### Review the service
 
@@ -247,9 +251,9 @@ Click on `Actions` > `Edit YAML` to open the service's configuration:
 
 Here you can see that the resource `Service`:
 
-* Has the `name: patient-ui`
-* Creates a port named `8080-tcp`, which maps `port: 8080` to `targetPort: 8080` of the `deploymentconfig: patient-ui`
-* Is of `type: ClusterIP`, which exposes the service on a cluster-internal IP. This makes the service only reachable from within the cluster!
+- Has the `name: patient-ui`
+- Creates a port named `8080-tcp`, which maps `port: 8080` to `targetPort: 8080` of the `deploymentconfig: patient-ui`
+- Is of `type: ClusterIP`, which exposes the service on a cluster-internal IP. This makes the service only reachable from within the cluster!
 
 ## Review the route
 
@@ -267,14 +271,13 @@ Again, open the route's configuration by clicking `Actions` > `Edit YAML`:
 
 Here you can see that the `Route` resource forwards traffic from `host: patient-...containers.appdomain.cloud` to `kind: Service` with `name: patient-ui` onto `targetPort: 8080-tcp`.
 
-
 ## Conclusion
 
 In this lab we explored how:
 
-* Source code is stored in a git repository
-* `Images` are built from the source code using a `BuildConfig` with the `nodejs:10` S2I builder
-* The resulting image is stored in an `ImageStream`
-* The images run in a set of `Pods`, which are managed by a `DeploymentConfig` and `ReplicationController`
-* A `Service` is a virtual abstraction of pods and routes internal traffic to them
-* A `Route` exposes the `Service` to the public internet
+- Source code is stored in a git repository
+- `Images` are built from the source code using a `BuildConfig` with the `nodejs:10` S2I builder
+- The resulting image is stored in an `ImageStream`
+- The images run in a set of `Pods`, which are managed by a `DeploymentConfig` and `ReplicationController`
+- A `Service` is a virtual abstraction of pods and routes internal traffic to them
+- A `Route` exposes the `Service` to the public internet
