@@ -166,6 +166,8 @@ $ oc new-app centos/ruby-25-centos7~https://github.com/sclorg/ruby-ex.git
 Now the application is being deployed. Check the status of the deployment with the following command:
 
 ```bash
+$ oc status
+
 In project tw-dev on server https://c100-e.eu-de.containers.cloud.ibm.com:30026
 
 svc/ruby-ex - 172.21.20.99:8080
