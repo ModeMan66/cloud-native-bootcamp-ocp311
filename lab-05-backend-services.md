@@ -354,6 +354,7 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
+            initialDelaySeconds: 15
           ports:
             - containerPort: 9080
           env:
