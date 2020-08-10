@@ -4,7 +4,7 @@ Before we can start with any labs, the access to the IBM Cloud and the OpenShift
 
 ## Log into the IBM Cloud and cluster UI
 
-Log into IBM Cloud https://cloud.ibm.com/login.
+Log into IBM Cloud https://cloud.ibm.com/login and select the account for your training in the upper right corner.
 
 Navigate to **Menu** &rarr; **OpenShift** &rarr; **Clusters** as shown below.
 
