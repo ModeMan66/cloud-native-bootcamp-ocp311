@@ -61,6 +61,12 @@ Have a look at the progress of the build by executing:
 oc build-logs httpd-container-1
 ```
 
+For newer versions of the OpenShift CLI you need to run the following command:
+
+```
+oc logs build/httpd-container-1
+```
+
 Now you can see how each layer of the Dockerfile is build. At the end the resulting image is pushed to the internal image registry and could now be started up as a container.
 
 > Hint: To start a new build use the command `oc start-build httpd-container` or navigate to the `Build` section in the UI, click on the BuildConfig and select `Start Build`
