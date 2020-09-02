@@ -2,7 +2,7 @@
 
 ## Log into the cluster UI
 
-Log into IBM Cloud https://cloud.ibm.com/login.
+Log into IBM Cloud https://cloud.ibm.com/login and select the Garage-account in the accounts drop-down.
 
 Navigate to **Menu** &rarr; **OpenShift** &rarr; **Clusters** as shown below and select a cluster
 
