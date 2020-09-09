@@ -8,3 +8,5 @@
 1. [Application Development using Source-to-Image (S2I)](./lab-03-s2i-app-dev.md)
 1. [Continuous Deployment with Git Webhook](./lab-04-app-updates.md)
 1. [Add "Polyglot" Microservices with the CLI and Infrastructure-as-Code](./lab-05-backend-services.md)
+  1. [Database part](./lab-05a-mysql-database.md)
+  1. [Java backend part](./lab-05b-backend-service.md)
