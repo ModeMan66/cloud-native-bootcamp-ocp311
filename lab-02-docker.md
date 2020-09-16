@@ -45,7 +45,7 @@ For this purpose the `oc` command `oc new-build` is utilized.
 
 The application that is being build is a simple http server, based on this git repository: https://github.com/sclorg/httpd-container
 
-First, open the repository and locate the `Dockerfile` in the `2.4` folder. Second, open the file and have a look at the individual layers.
+First, open the repository and locate the `Dockerfile` in the `2.4` folder. Second, open the file and have a look at the individual steps.
 
 Now open a terminal, log into your OpenShift cluster, select your project and execute the following command:
 
@@ -67,6 +67,6 @@ For newer versions of the OpenShift CLI you need to run the following command:
 oc logs build/httpd-container-1
 ```
 
-Now you can see how each layer of the Dockerfile is build. At the end the resulting image is pushed to the internal image registry and could now be started up as a container.
+Now you can see how each step of the Dockerfile is executed and several layers are built. At the end the resulting image is pushed to the internal image registry and could now be started up as a container.
 
 > Hint: To start a new build use the command `oc start-build httpd-container` or navigate to the `Build` section in the UI, click on the BuildConfig and select `Start Build`
